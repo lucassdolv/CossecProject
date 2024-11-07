@@ -1,10 +1,19 @@
+import { useNavigation } from "@react-navigation/native";
 import React from 'react';
 import { Image, Pressable, SafeAreaView, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { useFonts } from 'expo-font';
 
 export default function Home() {
+const navigation = useNavigation();
+
+ const [fontsLoaded] = useFonts({
+  'RedHatDisplay-VariableFont_wght': require('../../assets/fonts/RedHatDisplay-VariableFont_wght.ttf'),
+  'RedHatDisplay-Italic-VariableFont_wght': require('../../assets/fonts/RedHatDisplay-Italic-VariableFont_wght.ttf')
+});
+
   return (
     <View style={styles.container}>
-      <Pressable style={styles.shopLink}>
+      <Pressable style={styles.shopLink}  onPress= {() => navigation.navigate('Cadastro')}>
         <Text style={styles.shopText}>
           ir direto à loja {'>'}
         </Text>
@@ -17,10 +26,10 @@ export default function Home() {
       </Text>
       <Image source={require('../../assets/Logo01.jpg')} style={styles.logo} />
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Cadastrar</Text>
+        <TouchableOpacity style={styles.button} onPress= {() => navigation.navigate('Cadastro')}>
+          <Text style={styles.buttonText} >Cadastrar</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button}         onPress= {() => navigation.navigate('Login')}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
       </View>
@@ -32,44 +41,45 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     paddingHorizontal: 20,
+    justifyContent: 'center',
   },
   shopLink: {
     alignSelf: 'flex-end',
     marginTop: 70,
-    marginBottom: 10,
+    marginBottom: 140,
   },
   shopText: {
-    fontFamily: 'RedHatDisplay-Regular',
+    fontFamily: 'RedHatDisplay-VariableFont_wght',
     fontSize: 12,   
     color: 'black',
   },
   welcomeText: {
     fontSize: 20,
-    fontFamily: 'RedHatDisplay-Regular',
-    fontWeight: 'bold',
-    marginBottom: 10,
+    fontFamily: 'RedHatDisplay-VariableFont_wght',
+    marginBottom: 5,
     textAlign: 'center',
   },
   subtitleText: {
-    fontSize: 16,
+    fontSize: 12,
+    fontFamily: 'RedHatDisplay-Italic-VariableFont_wght',
     color: '#666',
-    marginBottom: 20,
+    marginBottom: 80,
     textAlign: 'center',
   },
   logo: {
-    width: 200,
-    height: 200,
-    resizeMode: 'contain',
-    marginBottom: 20,
+    alignSelf: 'center', 
+    width: 140,
+    height: 124,
+    marginBottom: 80,
   },
   buttonContainer: {
-    width: '80%',
+    width: '40%',
+    alignSelf: 'center',
     alignItems: 'center',
   },
   button: {
-    backgroundColor: '#000', // Cor preta para o botão
+    backgroundColor: '#000',
     paddingVertical: 15,
-    paddingHorizontal: 30,
     borderRadius: 25,
     marginBottom: 10,
     alignItems: 'center',
@@ -77,7 +87,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontFamily: 'RedHatDisplay-VariableFont_wght',
   },
 });

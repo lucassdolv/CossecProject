@@ -1,10 +1,9 @@
-import { SafeAreaView, View } from 'react-native';
-import Home from './src/Screens/Home';
+import React from 'react';
+import MainNavigator from './MainNavigator';
+import { enableScreens } from 'react-native-screens';
+
+enableScreens();
 
 export default function App() {
-  return (
-    <SafeAreaView>
-      <Home/>
-    </SafeAreaView>
-  );
+  return <MainNavigator />;
 }
